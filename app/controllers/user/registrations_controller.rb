@@ -6,6 +6,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
   def new
+    super
     build_resource({})
     resource.build_perfil
     respond_with resource
@@ -55,7 +56,6 @@ class User::RegistrationsController < Devise::RegistrationsController
   def permitted_attributes
     [
       :perfil,
-      #:perfil_attributes
       perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo cidade estado complemento]
     ]
   end

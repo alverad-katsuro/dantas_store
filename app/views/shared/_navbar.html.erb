@@ -74,10 +74,9 @@
 
         <div class="buttons" id='signs'>
           <% unless user_signed_in? %>
-            <%= link_to("Cadastre-se", '/users/sign_up',:class => "bg-lime-500 text-black px-3 py-2 rounded-md text-sm font-medium")%>
-            <%= link_to("Entrar", '/users/sign_in', :class => "bg-blue-300 text-black px-3 py-2 rounded-md text-sm font-medium")%>
-          <% end %>  
-          <% if user_signed_in? %>
+            <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), '/users/sign_in')%>
+          <% else %>
+              <script src="<%= javascript_path("collapse_menu_user.js") %>" async="async" data-turbo-track="reload"></script>
               <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button type="button" class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                   <span class="sr-only">View notifications</span>
@@ -110,7 +109,7 @@
                     <!-- Active: "bg-gray-100", Not Active: "" -->
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Perfil</a>
                     <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Configurações</a>
-                    <a href="<%= link_to "Sair", destroy_user_session_path, method: :delete%>" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sair</a>
+                    <%= link_to "Sair", destroy_user_session_path, method: :get, :class=>"block px-4 py-2 text-sm text-gray-700"%>
                   </div>
                 </div>
               </div>
