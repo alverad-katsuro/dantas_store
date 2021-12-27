@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
-  before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_account_update_params, :configure_sign_up_params, only: [:update, :create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
-    super
     build_resource({})
     resource.build_perfil
     respond_with resource
@@ -24,7 +23,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   # def update
-  #   super
+  #  super
   # end
 
   # DELETE /resource
@@ -56,14 +55,15 @@ class User::RegistrationsController < Devise::RegistrationsController
   def permitted_attributes
     [
       :perfil,
-      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo cidade estado complemento]
+      :perfil_attributes,
+      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo cidade estado complemento aniversario]
     ]
   end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update, keys: permitted_attributes)
+   end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

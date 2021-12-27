@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_143106) do
+ActiveRecord::Schema.define(version: 2021_12_27_194544) do
 
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_143106) do
     t.text "complemento"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "aniversario"
     t.index ["user_id"], name: "index_perfils_on_user_id"
   end
 
