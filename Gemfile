@@ -76,3 +76,4 @@ end
 
 gem "devise", "~> 4.8"
 gem "passenger", "~> 6.0"
+gem 'friendly_id', '~> 5.1'

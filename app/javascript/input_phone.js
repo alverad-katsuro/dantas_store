@@ -22,6 +22,5 @@ id('telefone').onkeyup = function(){
 }
 }
 
-const telefone = document.querySelector('#telefone');
 
 telefone.addEventListener('keyup', function(){mascara(this, mtel)});
