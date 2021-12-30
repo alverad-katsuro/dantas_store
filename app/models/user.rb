@@ -6,5 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :perfil, dependent: :destroy
+  has_one_attached :avatar
   accepts_nested_attributes_for :perfil
 end

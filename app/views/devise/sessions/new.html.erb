@@ -11,7 +11,8 @@
       </p>
     </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), :class=>"mt-8 space-y-6") do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= alert %>
 
         <input type="hidden" name="remember" value="true">
         <div class="rounded-md shadow-sm -space-y-px">

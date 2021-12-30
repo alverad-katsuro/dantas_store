@@ -1,6 +1,9 @@
 class Perfil < ApplicationRecord
   belongs_to :user
 
+
+  #validates :email, presence:true
+  #validates :email, presence:true
   validates :nome, presence:true
   validates :sobrenome, presence:true
   validates :telefone, presence:true

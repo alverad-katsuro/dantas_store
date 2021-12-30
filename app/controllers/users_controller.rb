@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!#, :set_user
+  before_action :authenticate_user!
 
   def index
     set_user
