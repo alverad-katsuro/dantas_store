@@ -72,7 +72,7 @@
 
         <div class="buttons" id='signs'>
           <% unless user_signed_in? %>
-            <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), '/users/sign_in')%>
+            <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), new_user_session_path)%>
           <% else %>
               <script src="<%= javascript_path("collapse_menu_user.js") %>" async="sync" data-turbo-track="reload"></script>
               <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
