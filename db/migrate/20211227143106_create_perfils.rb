@@ -12,6 +12,7 @@ class CreatePerfils < ActiveRecord::Migration[7.0]
       t.string :bairro
       t.string :estado
       t.text :complemento
+      t.datetime :nascimento
 
       t.timestamps
     end

@@ -43,6 +43,10 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   protected
 
+  def after_update_path_for(resource)
+    sign_in_after_change_password? ? user_path(resource) : new_session_path(resource_name)
+  end
+
   # If you have extra params to permit, append them to the sanitizer.
   def sign_up_params
     devise_parameter_sanitizer.sanitize(:sign_up) { |user| user.permit(permitted_attributes) }
@@ -56,15 +60,20 @@ class User::RegistrationsController < Devise::RegistrationsController
     [
       :funcionario,
       :perfil,
+      :avatar,
       :perfil_attributes,
-      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo cidade estado complemento aniversario]
+      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo avatar cidade estado complemento aniversario id]
     ]
   end
 
+  def account_update_params
+    devise_parameter_sanitizer.sanitize(:account_update)
+  end
+  
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update, keys: permitted_attributes)
-   end
+  end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)

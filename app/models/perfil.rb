@@ -1,5 +1,7 @@
 class Perfil < ApplicationRecord
   belongs_to :user
+  
+  has_one_attached :avatar
 
   validates :nome, presence:true
   validates :sobrenome, presence:true

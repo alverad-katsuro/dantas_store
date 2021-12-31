@@ -42,13 +42,14 @@ ActiveRecord::Schema.define(version: 2021_12_27_224342) do
 
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "cargo"
+    t.integer "cargo"
     t.string "banco"
     t.string "agencia"
     t.string "conta_corrente"
     t.string "cpf"
     t.float "salario"
     t.integer "vendas"
+    t.boolean "ativo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_funcionarios_on_user_id"
@@ -66,14 +67,14 @@ ActiveRecord::Schema.define(version: 2021_12_27_224342) do
     t.string "bairro"
     t.string "estado"
     t.text "complemento"
+    t.datetime "nascimento", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "aniversario"
     t.index ["user_id"], name: "index_perfils_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.boolean "funcionario"
+    t.boolean "funcionario", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
