@@ -107,7 +107,7 @@
                     <!-- Active: "bg-gray-100", Not Active: "" -->
                     <%= link_to("Perfil", user_path(id: current_user.id), :class=>"block px-4 py-2 text-sm text-gray-700") %>
                     <%= link_to("Configurações", edit_user_registration_path(id: current_user.id), :class=>"block px-4 py-2 text-sm text-gray-700") %>
-                    <%= link_to("Sair", destroy_user_session_path, method: :delete, :class=>"block px-4 py-2 text-sm text-gray-700")%>
+                    <%= button_to("Sair", destroy_user_session_path, method: :delete, :class=>"block px-4 py-2 text-sm text-gray-700")%>
                   </div>
                 </div>
               </div>

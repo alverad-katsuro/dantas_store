@@ -8,6 +8,7 @@ class User::RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     resource.build_perfil
+    yield resource if block_given?
     respond_with resource
   end
 
@@ -51,9 +52,9 @@ class User::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: permitted_attributes )
   end
 
-
   def permitted_attributes
     [
+      :funcionario,
       :perfil,
       :perfil_attributes,
       perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo cidade estado complemento aniversario]

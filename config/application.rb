@@ -11,6 +11,7 @@ module DantasStore
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.i18n.default_locale = :'pt-BR'
+    config.I18n.available_locales = [:'en', :'pt-BR']
     config.web_console.permissions = '10.0.0.182'
     # Configuration for the application, engines, and railties goes here.
     #
