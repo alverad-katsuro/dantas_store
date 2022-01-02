@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_224342) do
     t.string "bairro"
     t.string "estado"
     t.text "complemento"
-    t.datetime "nascimento", precision: 6
+    t.date "nascimento"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_perfils_on_user_id"
