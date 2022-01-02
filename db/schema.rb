@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
     t.string "banco"
     t.string "agencia"
     t.string "conta_corrente"
-    t.string "cpf"
     t.string "salario_vendas"
     t.boolean "ativo"
     t.datetime "created_at", precision: 6, null: false
@@ -61,12 +60,14 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
   end
 
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.string "perfil_type", null: false
+    t.bigint "perfil_id", null: false
     t.string "nome"
     t.string "sobrenome"
     t.string "telefone"
     t.string "sexo"
     t.string "rua"
+    t.string "cpf"
     t.integer "numero"
     t.string "cidade"
     t.string "bairro"
@@ -75,7 +76,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
     t.date "nascimento"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_perfils_on_user_id"
+    t.index ["perfil_type", "perfil_id"], name: "index_perfils_on_perfil"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -93,5 +94,4 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "perfils", "users"
 end

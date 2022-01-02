@@ -6,7 +6,6 @@ class CreateFuncionarios < ActiveRecord::Migration[7.0]
       t.string :banco
       t.string :agencia
       t.string :conta_corrente
-      t.string :cpf
       t.string :salario_vendas
       t.boolean :ativo
 

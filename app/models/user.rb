@@ -6,6 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :timeoutable
   ##
 
-  has_one :perfil, dependent: :destroy
+  has_one :perfil, as: :perfil, dependent: :destroy
   accepts_nested_attributes_for :perfil
 end
