@@ -1,3 +1,9 @@
-class Funcionario < ApplicationRecord
-  belongs_to :user
+class Funcionario < User
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+  #
+  has_one_attached :avatar
+
 end

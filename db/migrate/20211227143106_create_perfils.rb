@@ -1,7 +1,7 @@
 class CreatePerfils < ActiveRecord::Migration[7.0]
   def change
     create_table :perfils do |t|
-      t.references :users, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
       t.string :nome
       t.string :sobrenome
       t.string :telefone

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_224342) do
+ActiveRecord::Schema.define(version: 2022_01_02_183105) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -41,18 +41,23 @@ ActiveRecord::Schema.define(version: 2021_12_27_224342) do
   end
 
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.boolean "admin"
     t.integer "cargo"
     t.string "banco"
     t.string "agencia"
     t.string "conta_corrente"
     t.string "cpf"
-    t.float "salario"
-    t.integer "vendas"
+    t.string "salario_vendas"
     t.boolean "ativo"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_funcionarios_on_user_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at", precision: 6
+    t.datetime "remember_created_at", precision: 6
+    t.index ["email"], name: "index_funcionarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
   end
 
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
@@ -88,6 +93,5 @@ ActiveRecord::Schema.define(version: 2021_12_27_224342) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "funcionarios", "users"
   add_foreign_key "perfils", "users"
 end

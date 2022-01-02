@@ -1,3 +1,7 @@
 pt-BR:
   date:
     month_names: ""
+  datetime:
+    distance_in_words:
+      x_minutes: "x minutos"
+      about_x_hours: "x horas"

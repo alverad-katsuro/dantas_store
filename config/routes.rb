@@ -1,20 +1,20 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  get 'departamento/index'
-  get 'contato/index'
-  get 'sobre/index'
   root 'home#index'
   get "user", to: "users#index" 
+  get "funcionario", to: "funcionarios#index" 
+  get "departamento", to: "departamento#index" 
+  get "sobre", to: "sobre#index" 
+  get "contato", to: "contato#index" 
+  #resources :users
+  
+  devise_for :funcionarios, 
+              controllers: {
+                registrations: 'funcionario/registrations',
+                sessions: 'funcionario/sessions'
+              }
   devise_for :users, 
               controllers: {
-                registrations: 'user/registrations',
-                #sessions: 'user/sessions'
-              }, skip: {
-                #post "/users/sign_up" => "user/registrations#create", :as => :new_user_registration
+                registrations: 'user/registrations'
               }
-  devise_scope :users do
-    get "/users/sign_out" => "devise/sessions#destroy"
-    post "/users" => "devise/registrations#create"
-  end
-  #resources :users
 end

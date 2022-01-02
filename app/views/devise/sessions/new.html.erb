@@ -2,13 +2,15 @@
   <div class="max-w-md w-full space-y-8">
     <div>
       <%= image_tag('emblema.png', :class=>"mx-auto h-32 w-auto")%>
-      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 mb-5">
         Entre em sua conta
       </h2>
-      <p class="mt-2 text-center text-sm text-gray-600">
-        Ou
-        <%= link_to('cadastre-se', new_registration_path(resource_name), :class=>"font-medium text-indigo-600 hover:text-indigo-500") %>        
-      </p>
+      <% if (request.path.eql?(new_user_session_path)) %>
+        <p class="mt-2 text-center text-sm text-gray-600 mb-5">
+          Ou
+          <%= link_to('cadastre-se', new_registration_path(resource_name), :class=>"font-medium text-indigo-600 hover:text-indigo-500") %>        
+         | <%= link_to('funcionario', new_funcionario_session_path(), :class=>"font-medium text-indigo-600 hover:text-indigo-500")%> </p>
+        <% end %>
     </div>
     <%= turbo_frame_tag resource, target: '_top' do %>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name),:class=>"mt-8 space-y-6") do |f| %>
@@ -20,7 +22,7 @@
           </div>
           <div>
             <%= f.label :password, :for=>"password", :class=>"sr-only" %>
-            <%= f.password_field :password, :autocomplete=> "current-password", :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", :placeholder=>"Password" %>
+            <%= f.password_field :password, :autocomplete=> "current-password", :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-5", :placeholder=>"Password" %>
           </div>
         </div>
 
