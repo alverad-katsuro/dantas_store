@@ -6,9 +6,9 @@
         Atualizar Dados
       </h2>
     </div>
-    <%= turbo_frame_tag resource do %>
+    <%= turbo_frame_tag resource, target: '_top' do %>
       <script src="<%= javascript_path("input_phone.js") %>" async="async" data-turbo-track="reload"></script>
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :patch, :class=>"mt-8 space-y-6", html: {'data-turbo' => "false"}) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :patch, :class=>"mt-8 space-y-6") do |f| %>
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
         <% end %>
@@ -40,7 +40,11 @@
             </div>
             <div class="flex-grow">
               <%= perfil.label :sexo, :class=> "sr-only" %>
-              <%= perfil.select :sexo, ["Masculino", "Feminino", "Outro", "Prefiro Não Informar"], {}, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm rounded-r-md" %>
+              <%= perfil.select :sexo, ["Masculino", "Feminino", "Outro", "Prefiro Não Informar"], {}, :class=>"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" %>
+            </div>
+            <div class="flex-grow">
+              <%= perfil.label :nascimento, :class=> "sr-only" %>
+              <%= perfil.date_field :nascimento, :class=>"appearance-none rounded-none relative block w-full px-3 py-1.8 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm rounded-r-md" %>
             </div>
           </div>
           

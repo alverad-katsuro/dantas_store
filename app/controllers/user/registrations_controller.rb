@@ -12,7 +12,7 @@ class User::RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
-  # POST /resource
+  # POST /resource/sign_up
   # def create
   #   super
   # end
@@ -62,7 +62,7 @@ class User::RegistrationsController < Devise::RegistrationsController
       :perfil,
       :avatar,
       :perfil_attributes,
-      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo avatar cidade estado complemento aniversario id]
+      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo avatar cidade estado complemento nascimento id]
     ]
   end
 

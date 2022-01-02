@@ -1,5 +1,5 @@
-const burgerIco = document.querySelector('#navbar-burger');
-const navbarMenu = document.querySelector('#nav-links');
+var burgerIco = document.querySelector('#navbar-burger');
+var navbarMenu = document.querySelector('#nav-links');
 
 function hide_show(id) {
   id.classList.toggle('hidden');

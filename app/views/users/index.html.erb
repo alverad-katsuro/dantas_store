@@ -12,12 +12,16 @@
                     <% else %>
                         <%= image_tag("avatar.ico", :class=>"h-auto w-full mx-auto")%>
                     <% end %>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 my-1"><%= @user.perfil.nome + " " + @user.perfil.sobrenome %></h1>
-                    <% if @user.funcionario.eql?(1) %>
-                    <h3 class="text-gray-600 font-lg text-semibold leading-6"><%= @user.funcionario.cargo %></h3>
-                    <% end %>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 mt-10 mb-4"><%= @user.perfil.nome + " " + @user.perfil.sobrenome %></h1>
+                    
                     <ul
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
+                        <% if @user.funcionario.eql?(1) %>
+                        <li class="flex items-center py-3">
+                            <span>Cargo</span>
+                            <span class="ml-auto"><%= @user.funcionario.cargo %></span>
+                        </li>
+                        <% end %>
                         <li class="flex items-center py-3">
                             <span>Membro desde</span>
                             <span class="ml-auto"><%= (@user.created_at).to_s.split[0] %></span>
@@ -41,7 +45,7 @@
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                         </span>
-                        <span class="tracking-wide">About</span>
+                        <span class="tracking-wide">Sobre</span>
                     </div>
                     <div class="text-gray-700">
                         <div class="grid md:grid-cols-2 text-sm">
@@ -77,7 +81,7 @@
                             </div>
                             <div class="grid grid-cols-2">
                                 <div class="px-4 py-2 font-semibold">Data de Nascimento</div>
-                                <div class="px-4 py-2"><%= @user.perfil.aniversario %></div>
+                                <div class="px-4 py-2"><%= @user.perfil.nascimento %></div>
                             </div>
                         </div>
                     </div>

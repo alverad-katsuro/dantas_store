@@ -8,6 +8,8 @@
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "collapse_navbar.js", :"data-turbo-track"=>"reload" %>
+
   </head>
 
   <body>
@@ -15,7 +17,5 @@
     <main class="container">
       <%= yield %>
     </main>
-  <script src="<%= javascript_path("collapse_navbar.js") %>" async="sync" data-turbo-track="reload"></script>
-
   </body>
 </html>
