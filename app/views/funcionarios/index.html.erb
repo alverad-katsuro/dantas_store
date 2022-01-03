@@ -17,7 +17,7 @@
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">
                             <span>Cargo</span>
-                            <span class="ml-auto"><%= Funcionario.human_attribute_name(@funcionario.cargo) %></span>
+                            <span class="ml-auto"><%= @funcionario.cargo %></span>
                         </li>
                         <li class="flex items-center py-3">
                             <span>Membro desde</span>
@@ -25,7 +25,7 @@
                         </li>
                         <li class="flex items-center py-3">
                             <span>Funcionario Ativo</span>
-                            <span class="ml-auto"><%= Funcionario.human_attribute_name(@funcionario.ativo) %></span>
+                            <span class="ml-auto"><%= @funcionario.ativo %></span>
                         </li>
                     </ul>
                 </div>

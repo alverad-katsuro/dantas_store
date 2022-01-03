@@ -5,7 +5,7 @@ class CreatePerfils < ActiveRecord::Migration[7.0]
       t.string :nome
       t.string :sobrenome
       t.string :telefone
-      t.string :sexo
+      t.integer :sexo
       t.string :rua
       t.string :cpf
       t.integer :numero

@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
     t.string "nome"
     t.string "sobrenome"
     t.string "telefone"
-    t.string "sexo"
+    t.integer "sexo"
     t.string "rua"
     t.string "cpf"
     t.integer "numero"

@@ -1,4 +1,5 @@
 class FuncionariosController < ApplicationController
+  include FuncionariosHelper
   before_action :authenticate_funcionario!
 
   def index
