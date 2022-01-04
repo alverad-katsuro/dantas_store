@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_02_183105) do
+ActiveRecord::Schema.define(version: 2022_01_04_174051) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,26 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "categoria", charset: "utf8mb4", force: :cascade do |t|
+    t.string "cama_type", null: false
+    t.bigint "cama_id", null: false
+    t.string "mesa_type", null: false
+    t.bigint "mesa_id", null: false
+    t.string "banho_type", null: false
+    t.bigint "banho_id", null: false
+    t.string "cozinha_type", null: false
+    t.bigint "cozinha_id", null: false
+    t.string "decoracao_type", null: false
+    t.bigint "decoracao_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["banho_type", "banho_id"], name: "index_categoria_on_banho"
+    t.index ["cama_type", "cama_id"], name: "index_categoria_on_cama"
+    t.index ["cozinha_type", "cozinha_id"], name: "index_categoria_on_cozinha"
+    t.index ["decoracao_type", "decoracao_id"], name: "index_categoria_on_decoracao"
+    t.index ["mesa_type", "mesa_id"], name: "index_categoria_on_mesa"
+  end
+
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
     t.boolean "admin"
     t.integer "cargo"
@@ -57,6 +77,15 @@ ActiveRecord::Schema.define(version: 2022_01_02_183105) do
     t.datetime "remember_created_at", precision: 6
     t.index ["email"], name: "index_funcionarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
+  end
+
+  create_table "items", charset: "utf8mb4", force: :cascade do |t|
+    t.string "nome"
+    t.text "descricao"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "codigo_produto"
+    t.index ["codigo_produto"], name: "index_items_on_codigo_produto", unique: true
   end
 
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|

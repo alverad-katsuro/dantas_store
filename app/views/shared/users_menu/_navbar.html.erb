@@ -40,10 +40,10 @@
         <div class="hidden sm:block sm:ml-6">
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <%= render "shared/botoes/inicio" %>
-            <%= render "shared/botoes/departamento" %>
-            <%= render "shared/botoes/contato" %>
-            <%= render "shared/botoes/sobre" %>
+            <%= render "shared/users_menu/botoes/inicio" %>
+            <%= render "shared/users_menu/botoes/departamento" %>
+            <%= render "shared/users_menu/botoes/contato" %>
+            <%= render "shared/users_menu/botoes/sobre" %>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
 
         <div class="buttons" id='signs'>
           <% if user_signed_in? %>
-            <%= render 'shared/users_menu/menu' %>
+            <%= render 'shared/users_menu/users_menu/menu' %>
           <% else %>
             <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), new_user_session_path)%>
           <% end %>
@@ -64,10 +64,10 @@
   <div class="sm:hidden" id="mobile-menu">
     <div class="px-2 pt-2 pb-4 space-y-1 hidden" id="nav-links">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-      <%= render "shared/botoes_mobile/inicio" %>
-      <%= render "shared/botoes_mobile/departamento" %>
-      <%= render "shared/botoes_mobile/contato" %>
-      <%= render "shared/botoes_mobile/sobre" %>
+      <%= render "shared/users_menu/botoes_mobile/inicio" %>
+      <%= render "shared/users_menu/botoes_mobile/departamento" %>
+      <%= render "shared/users_menu/botoes_mobile/contato" %>
+      <%= render "shared/users_menu/botoes_mobile/sobre" %>
     </div>
   </div>
 </nav>
