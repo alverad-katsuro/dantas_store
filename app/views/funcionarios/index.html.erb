@@ -12,7 +12,7 @@
                     <% else %>
                         <%= image_tag("avatar.ico", :class=>"h-auto w-full mx-auto")%>
                     <% end %>
-                    <h1 class="text-gray-900 font-bold text-xl leading-8 mt-10 mb-4"><%= @funcionario.perfil.nome + " " + @funcionario.perfil.sobrenome %></h1>
+                    <h1 class="text-gray-900 font-bold text-xl leading-8 mt-10 mb-4"><%= @funcionario.perfil.name + " " + @funcionario.perfil.sobrenome %></h1>
                     <ul
                         class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm">
                         <li class="flex items-center py-3">

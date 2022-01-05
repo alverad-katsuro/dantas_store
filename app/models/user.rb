@@ -8,4 +8,11 @@ class User < ApplicationRecord
 
   has_one :perfil, as: :perfil, dependent: :destroy
   accepts_nested_attributes_for :perfil
+
+  rails_admin do
+    visible true
+    list do
+      perfil_format
+    end
+  end
 end

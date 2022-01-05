@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_174051) do
+ActiveRecord::Schema.define(version: 2022_01_04_193919) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -41,33 +41,19 @@ ActiveRecord::Schema.define(version: 2022_01_04_174051) do
   end
 
   create_table "categoria", charset: "utf8mb4", force: :cascade do |t|
-    t.string "cama_type", null: false
-    t.bigint "cama_id", null: false
-    t.string "mesa_type", null: false
-    t.bigint "mesa_id", null: false
-    t.string "banho_type", null: false
-    t.bigint "banho_id", null: false
-    t.string "cozinha_type", null: false
-    t.bigint "cozinha_id", null: false
-    t.string "decoracao_type", null: false
-    t.bigint "decoracao_id", null: false
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["banho_type", "banho_id"], name: "index_categoria_on_banho"
-    t.index ["cama_type", "cama_id"], name: "index_categoria_on_cama"
-    t.index ["cozinha_type", "cozinha_id"], name: "index_categoria_on_cozinha"
-    t.index ["decoracao_type", "decoracao_id"], name: "index_categoria_on_decoracao"
-    t.index ["mesa_type", "mesa_id"], name: "index_categoria_on_mesa"
+    t.index ["name"], name: "index_categoria_on_name", unique: true
   end
 
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
-    t.boolean "admin"
     t.integer "cargo"
     t.string "banco"
     t.string "agencia"
     t.string "conta_corrente"
     t.string "salario_vendas"
-    t.boolean "ativo"
+    t.boolean "ativo", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
@@ -79,19 +65,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_174051) do
     t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
   end
 
-  create_table "items", charset: "utf8mb4", force: :cascade do |t|
-    t.string "nome"
-    t.text "descricao"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "codigo_produto"
-    t.index ["codigo_produto"], name: "index_items_on_codigo_produto", unique: true
-  end
-
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
     t.string "perfil_type", null: false
     t.bigint "perfil_id", null: false
-    t.string "nome"
+    t.string "name"
     t.string "sobrenome"
     t.string "telefone"
     t.integer "sexo"
@@ -108,19 +85,40 @@ ActiveRecord::Schema.define(version: 2022_01_04_174051) do
     t.index ["perfil_type", "perfil_id"], name: "index_perfils_on_perfil"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
-    t.boolean "funcionario", default: false
+  create_table "produtos", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "codigo_produto"
+    t.string "nome"
+    t.text "descricao"
+    t.integer "quantidade", default: 0
+    t.float "preco", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["codigo_produto"], name: "index_produtos_on_codigo_produto", unique: true
+  end
+
+  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "produtos_id", null: false
+    t.bigint "categoria_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["categoria_id"], name: "index_tags_on_categoria_id"
+    t.index ["produtos_id"], name: "index_tags_on_produtos_id"
+  end
+
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at", precision: 6
     t.datetime "remember_created_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "tags", "categoria", column: "categoria_id"
+  add_foreign_key "tags", "produtos", column: "produtos_id"
 end

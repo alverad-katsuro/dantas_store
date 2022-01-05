@@ -5,10 +5,22 @@ class Funcionario < ApplicationRecord
          :recoverable, :rememberable, :validatable
   #
   has_one_attached :avatar
-  has_one :perfil, as: :perfil, dependent: :destroy
+  has_one :perfil, as: :perfil, dependent: :destroy, inverse_of: :perfil
   enum cargo: { 
     :Administrador=> 0, 
     :Vendedor => 1 
   }
   validates :cargo, presence:true
+
+  rails_admin do
+    list do
+      perfil_format
+      field :cargo
+      field :email
+    end
+    show do
+      perfil_format
+    end
+  end
+
 end

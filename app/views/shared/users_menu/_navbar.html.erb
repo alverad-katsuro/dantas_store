@@ -52,7 +52,7 @@
 
         <div class="buttons" id='signs'>
           <% if user_signed_in? %>
-            <%= render 'shared/users_menu/users_menu/menu' %>
+            <%= render 'shared/users_menu/menu' %>
           <% else %>
             <%= link_to(image_tag("avatar.ico", :class=>"mx-auto h-12 w-auto"), new_user_session_path)%>
           <% end %>

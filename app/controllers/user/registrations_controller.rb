@@ -62,7 +62,7 @@ class User::RegistrationsController < Devise::RegistrationsController
       :perfil,
       :avatar,
       :perfil_attributes,
-      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo avatar cidade estado complemento nascimento id]
+      perfil_attributes: %i[name sobrenome rua numero telefone bairro sexo avatar cidade estado complemento nascimento id]
     ]
   end
 

@@ -3,7 +3,7 @@ class Perfil < ApplicationRecord
   
   has_one_attached :avatar
 
-  validates :nome, presence:true
+  validates :name, presence:true
   validates :sobrenome, presence:true
   validates :telefone, presence:true, length: { minimum: 11, maximim: 15 }
   validates :sexo, presence:false
@@ -18,4 +18,11 @@ class Perfil < ApplicationRecord
     :"Feminino" => 1,
     :"Prefiro Não Informar" => 2
   }
+
+  rails_admin do
+    visible false
+    show do
+      perfil_format
+    end
+  end
 end
