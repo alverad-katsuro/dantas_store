@@ -10,9 +10,13 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :perfil
 
   rails_admin do
-    visible true
-    list do
-      perfil_format
+    visible false
+    edit do
+      configure :perfil do
+        hide
+      end
     end
   end
+
+
 end

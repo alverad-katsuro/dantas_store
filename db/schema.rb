@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_193919) do
+ActiveRecord::Schema.define(version: 2022_01_06_193920) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -41,10 +41,10 @@ ActiveRecord::Schema.define(version: 2022_01_04_193919) do
   end
 
   create_table "categoria", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name"
+    t.string "categoria"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["name"], name: "index_categoria_on_name", unique: true
+    t.index ["categoria"], name: "index_categoria_on_categoria", unique: true
   end
 
   create_table "funcionarios", charset: "utf8mb4", force: :cascade do |t|
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_193919) do
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
     t.string "perfil_type", null: false
     t.bigint "perfil_id", null: false
-    t.string "name"
+    t.string "nome"
     t.string "sobrenome"
     t.string "telefone"
     t.integer "sexo"
@@ -90,19 +90,20 @@ ActiveRecord::Schema.define(version: 2022_01_04_193919) do
     t.string "nome"
     t.text "descricao"
     t.integer "quantidade", default: 0
-    t.float "preco", default: 0.0
+    t.float "preco_de_venda", default: 0.0
+    t.float "preco_de_compra", default: 0.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["codigo_produto"], name: "index_produtos_on_codigo_produto", unique: true
   end
 
   create_table "tags", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "produtos_id", null: false
+    t.bigint "produto_id", null: false
     t.bigint "categoria_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["categoria_id"], name: "index_tags_on_categoria_id"
-    t.index ["produtos_id"], name: "index_tags_on_produtos_id"
+    t.index ["produto_id"], name: "index_tags_on_produto_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -117,8 +118,26 @@ ActiveRecord::Schema.define(version: 2022_01_04_193919) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vendas", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "funcionario_id", null: false
+    t.bigint "produto_id", null: false
+    t.bigint "perfil_id", null: false
+    t.integer "quantidade"
+    t.integer "desconto"
+    t.integer "parcelas", default: 1
+    t.integer "total"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["funcionario_id"], name: "index_vendas_on_funcionario_id"
+    t.index ["perfil_id"], name: "index_vendas_on_perfil_id"
+    t.index ["produto_id"], name: "index_vendas_on_produto_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "tags", "categoria", column: "categoria_id"
-  add_foreign_key "tags", "produtos", column: "produtos_id"
+  add_foreign_key "tags", "produtos"
+  add_foreign_key "vendas", "funcionarios"
+  add_foreign_key "vendas", "perfils"
+  add_foreign_key "vendas", "produtos"
 end

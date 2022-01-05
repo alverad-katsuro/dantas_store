@@ -7,11 +7,12 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 perfil = Perfil.new
-perfil.name = "ADMIN"
+perfil.nome = "ADMIN"
 perfil.sobrenome = "ADMIN"
 perfil.telefone = "(00) 00000-0000"
 perfil.sexo = 0
 perfil.rua = "admin"
+perfil.cpf = "000.000.000-00"
 perfil.numero = "admin"
 perfil.cidade = "admin"
 perfil.bairro = "admin"
@@ -28,17 +29,17 @@ funcionarios.cargo = 0
 funcionarios.save!
 
 cama = Categoria.new
-cama.name = "cama"
+cama.categoria = "cama"
 cama.save!
 
 mesa = Categoria.new
-mesa.name = "mesa"
+mesa.categoria = "mesa"
 mesa.save!
 
 banho = Categoria.new
-banho.name = "banho"
+banho.categoria = "banho"
 banho.save!
 
 decoracao = Categoria.new
-decoracao.name = "decoracao"
+decoracao.categoria = "decoracao"
 decoracao.save!

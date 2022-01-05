@@ -1,2 +1,2 @@
 #!/bin/bash
-rake db:drop && rake db:create && rake db:migrate && rake db:seed
+bin/rails db:drop && bin/rails db:create && bin/rails db:migrate && bin/rails db:seed

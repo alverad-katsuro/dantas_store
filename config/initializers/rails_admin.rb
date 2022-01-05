@@ -41,29 +41,7 @@ RailsAdmin.config do |config|
     # history_show
   end
 
-  def perfil_format
-    field :perfil do
-      label "Dados Complementares"
-      pretty_value do
-        if bindings[:object].perfil.is_a?(Perfil)
-          perfil = bindings[:object].perfil
-          link = bindings[:view]
-          team = bindings[:object]
-          link.link_to(perfil.name + " " + perfil.sobrenome, link.show_path(model_name: 'Perfil', id: bindings[:object].perfil))
-        elsif (bindings[:object].perfil_type.eql?("Funcionario"))
-          perfil = bindings[:object]
-          link = bindings[:view]
-          team = bindings[:object]
-          link.link_to(Funcionario.find(bindings[:object].perfil_id).cargo, link.show_path(model_name: 'Funcionario', id: bindings[:object].perfil_id))
-        else
-          perfil = bindings[:object]
-          link = bindings[:view]
-          team = bindings[:object]
-          link.link_to(User.find(bindings[:object].perfil_id).email, link.show_path(model_name: 'User', id: bindings[:object].perfil_id))
-        end
-      end
-    end
-  end
+
 
   ActiveRecord::Base.descendants.each do |imodel|
     config.model "#{imodel.name}" do
@@ -71,7 +49,7 @@ RailsAdmin.config do |config|
         exclude_fields :created_at, :updated_at, :tag, :remember_created_at, :reset_password_sent_at, :avatar, :id
       end
       edit do
-        exclude_fields :tag, :perfil, :id
+        exclude_fields :tag, :id
       end
       show do
         exclude_fields :tag, :id

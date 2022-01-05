@@ -5,7 +5,8 @@ class CreateProdutos < ActiveRecord::Migration[7.0]
       t.string :nome
       t.text :descricao
       t.integer :quantidade, default: 0
-      t.float :preco, default: 0.0
+      t.float :preco_de_venda, default: 0.0
+      t.float :preco_de_compra, default: 0.0
 
       t.timestamps
     end

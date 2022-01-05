@@ -3,11 +3,12 @@ class Perfil < ApplicationRecord
   
   has_one_attached :avatar
 
-  validates :name, presence:true
+  validates :nome, presence:true
   validates :sobrenome, presence:true
   validates :telefone, presence:true, length: { minimum: 11, maximim: 15 }
   validates :sexo, presence:false
   validates :rua, presence:true
+  validates :cpf, presence:true
   validates :numero, presence:true
   validates :cidade, presence:true
   validates :bairro, presence:true
@@ -21,8 +22,28 @@ class Perfil < ApplicationRecord
 
   rails_admin do
     visible false
+    object_label_method :to_s
+    list do
+      configure :perfil do
+        label "Conta Associada"
+      end
+    end
     show do
-      perfil_format
+      configure :perfil do
+        label "Conta Associada"
+      end
+    end
+  end
+
+  def to_s
+    "#{self.nome} #{self.sobrenome} CPF: #{get_cpf}"
+  end
+
+  def get_cpf
+    if self.cpf?
+      return self.cpf
+    else
+      return "S/CPF"
     end
   end
 end
