@@ -1,4 +1,85 @@
-<div>
-  <h1 class="font-bold text-4xl">Home#index</h1>
-  <p>Find me in app/views/home/index.html.erb</p>
+<main class="my-8 mx-8">
+  <% @categoria.each do |submatriz| %>
+    <div class="md:flex mt-8 md:-mx-4">
+    <% if submatriz.size.even? %>
+
+      <% submatriz.each do |categoria| %>
+          <% if categoria.foto_apresentacao.attached? %>
+            <div class="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2" style="background-image: url(<%= rails_blob_url(categoria.foto_apresentacao) %>)">
+                <div class="bg-gray-900 bg-opacity-50 flex items-center h-full group relative">
+                    <div class="px-10 max-w-xl">
+                        <h2 class="text-2xl text-white font-semibold"><%= categoria.categoria.capitalize %></h2>
+                        <p class="mt-2 text-gray-400"><%= categoria.descricao %></p>
+                        <%= link_to("categoria/"+categoria.categoria, :class => "flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none") do %>
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            <p>Explorar</p>
+                            <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+          <% end %>
+      <% end %>
+
+    <% else %>
+
+      <% submatriz.each do |categoria| %>
+          <% if categoria.foto_apresentacao.attached? %>
+            <div class="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center" style="background-image: url(<%= rails_blob_url(categoria.foto_apresentacao) %>)">
+                <div class="bg-gray-900 bg-opacity-50 flex items-center h-full group relative">
+                    <div class="px-10 max-w-xl">
+                        <h2 class="text-2xl text-white font-semibold"><%= categoria.categoria.capitalize %></h2>
+                        <p class="mt-2 text-gray-400"><%= categoria.descricao %></p>
+                        <%= link_to(produto_path, :class => "flex items-center mt-4 text-white text-sm uppercase font-medium rounded hover:underline focus:outline-none") do %>
+                            <span aria-hidden="true" class="absolute inset-0"></span>
+                            <p>Explorar</p>
+                            <svg class="h-5 w-5 mx-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+          <% end %>
+      <% end %>
+
+    <% end %>
+    </div>
+  <% end %>
+
+  <div class="bg-white">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <% @inicio.each do |categoria| %>
+      <div class="mt-4 flex justify-between">
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900"><%= categoria.categoria.capitalize %></h2>
+        <%= link_to("Ver mais", "categoria/"+categoria.categoria, :class=>"mt-1 text-sm text-gray-500") %>
+      </div>
+      <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <% Tag.find_by_sql("select * from tags where categoria_id=#{categoria.id} limit 4;") do |tag| %>
+        <% produto = Produto.find(tag.produto_id) %>
+      
+        <div class="group relative">
+          <div class="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
+          <%= image_tag(produto.foto_00, :class => "w-full h-full object-center object-cover lg:w-full lg:h-full") %>
+          </div>
+          <div class="mt-4 flex justify-between">
+            <div>
+              <h3 class="text-sm text-gray-700">
+              <%= link_to(produto, action: "produto#show") do %>
+                  <span aria-hidden="true" class="absolute inset-0"></span>
+                  <%= produto.nome %>
+              <% end %>
+              </h3>
+              <% if produto.quantidade > 0%>
+              <p class="mt-1 text-sm text-gray-500">Disponivel</p>
+              <% else %>
+              <p class="mt-1 text-sm text-gray-500">Indisponivel</p>
+              <% end %>
+            </div>
+            <p class="text-sm font-medium text-gray-900">R$ <%= produto.preco_de_venda %></p>
+          </div>
+        </div>
+      <% end %>
+        </div>
+    <% end %>
+  </div>
 </div>
+</main>

@@ -7,7 +7,6 @@ class CreateVendas < ActiveRecord::Migration[7.0]
       t.date :data_pagamento
       t.integer :quantidade
       t.integer :desconto
-      t.integer :parcelas, default: 1
       t.integer :total
 
       t.timestamps

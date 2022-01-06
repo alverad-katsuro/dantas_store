@@ -1,4 +1,5 @@
 class DepartamentoController < ApplicationController
-  def index
+  def show
+    @produto = Produto.find(params[:format])
   end
 end

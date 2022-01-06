@@ -2,32 +2,52 @@ class Venda < ApplicationRecord
   belongs_to :funcionario
   belongs_to :produto
   belongs_to :perfil
-  
+  has_one :parcela
+  before_validation :estoque?
+  after_create :reduz_stock?
+
   rails_admin do
     visible true
     list do
-      field :perfil do
-        label "Perfil"
-        pretty_value do
-          perfil = bindings[:object].perfil
-          link = bindings[:view]
-          team = bindings[:object]
-          link.link_to(perfil.name + " " + perfil.sobrenome, link.show_path(model_name: 'Perfil', id: bindings[:object].perfil))
-        end
+      configure :perfil do
+        show
+      end
+      include_fields :created_at
+      field :created_at do
+        label "Dia da venda"
       end
     end
     edit do
-
+      configure :total do
+        hide
+      end
     end
   end
 
-  validates :parcelas, numericality: {only_integer: true, greater_than_or_equal_to: 1, less_than_or_equal_to: 13}
+  validates :parcela, presence: true
+  validates :quantidade, presence: true
+  validates :data_pagamento, presence: true
+
+  def estoque?
+    unless produto.quantidade > quantidade
+      errors.add(:estoque, "Sem estoque")
+      return false
+    else
+      return true
+    end
+  end
+  
+  def reduz_stock?
+    puts("reduz")
+    produto.quantidade -= quantidade
+    produto.save!
+  end
 
   def valida_tamanho(x)
-    if (self.parcelas > 0 && self.parcelas < 13)
+    if (parcelas > 0 && parcelas < 13)
       true
     else
-      false
+      errors.add(:parcelas, "Parcelas fora do intervalo")
     end
   end
 end

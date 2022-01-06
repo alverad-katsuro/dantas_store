@@ -81,3 +81,5 @@ gem "rails_admin", "~> 3.0.beta2"
 gem "sassc-rails"
 
 gem "cancancan", "~> 3.3"
+
+gem "jquery-rails", "~> 4.4"

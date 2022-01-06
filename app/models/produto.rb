@@ -18,7 +18,10 @@ class Produto < ApplicationRecord
   rails_admin do
     object_label_method :to_s
     list do
-      exclude_fields  :foto_00, :foto_01, :foto_02, :foto_03, :foto_04
+      exclude_fields  :foto_00, :foto_01, :foto_02, :foto_03, :foto_04, :creat_at, :updated_at, :tag
+    end
+    edit do
+      exclude_fields  :tag
     end
   end
 

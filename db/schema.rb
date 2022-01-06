@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_06_193920) do
+ActiveRecord::Schema.define(version: 2022_01_06_193921) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_193920) do
 
   create_table "categoria", charset: "utf8mb4", force: :cascade do |t|
     t.string "categoria"
+    t.text "descricao"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["categoria"], name: "index_categoria_on_categoria", unique: true
@@ -63,6 +64,26 @@ ActiveRecord::Schema.define(version: 2022_01_06_193920) do
     t.datetime "remember_created_at", precision: 6
     t.index ["email"], name: "index_funcionarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
+  end
+
+  create_table "parcelas", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "venda_id", null: false
+    t.integer "parcelas", default: 1
+    t.boolean "primeira", default: false
+    t.boolean "segunda", default: false
+    t.boolean "terceira", default: false
+    t.boolean "quarta", default: false
+    t.boolean "quinta", default: false
+    t.boolean "sexta", default: false
+    t.boolean "setima", default: false
+    t.boolean "oitava", default: false
+    t.boolean "nona", default: false
+    t.boolean "decima", default: false
+    t.boolean "decima_primeira", default: false
+    t.boolean "decima_segunda", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venda_id"], name: "index_parcelas_on_venda_id"
   end
 
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
@@ -125,7 +146,6 @@ ActiveRecord::Schema.define(version: 2022_01_06_193920) do
     t.date "data_pagamento"
     t.integer "quantidade"
     t.integer "desconto"
-    t.integer "parcelas", default: 1
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -136,6 +156,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_193920) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "parcelas", "vendas"
   add_foreign_key "tags", "categoria", column: "categoria_id"
   add_foreign_key "tags", "produtos"
   add_foreign_key "vendas", "funcionarios"
