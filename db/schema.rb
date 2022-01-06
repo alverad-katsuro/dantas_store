@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(version: 2022_01_06_193920) do
     t.bigint "funcionario_id", null: false
     t.bigint "produto_id", null: false
     t.bigint "perfil_id", null: false
+    t.date "data_pagamento"
     t.integer "quantidade"
     t.integer "desconto"
     t.integer "parcelas", default: 1

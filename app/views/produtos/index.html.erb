@@ -1,0 +1,20 @@
+<table class="rounded-t-lg m-5 w-5/6 mx-auto bg-gray-200 text-gray-800">
+  <tr class="text-left border-b-2 border-gray-300">
+    <th class="px-4 py-3">Codigo</th>
+    <th class="px-4 py-3">Nome do Produto</th>
+    <th class="px-4 py-3">Quantidade</th>
+    <th class="px-4 py-3">Preço</th>
+    <th class="px-4 py-3">Categoria</th>
+  </tr>
+  
+  <% @produtos.each do | produto | %>
+  <tr class="bg-gray-100 border-b border-gray-200">
+    <td class="px-4 py-3"><%= produto.codigo_produto %></td>
+    <td class="px-4 py-3"><%= produto.nome %></td>
+    <td class="px-4 py-3"><%= produto.quantidade %></td>
+    <td class="px-4 py-3"><%= produto.preco_de_venda %></td>
+    <td class="px-4 py-3"><%= produto.categoria.join(", ") %></td>
+  </tr> 
+  <% end %>
+
+</table>
