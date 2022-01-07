@@ -1,8 +1,8 @@
 require "test_helper"
 
-class ContatoControllerTest < ActionDispatch::IntegrationTest
+class CobrancaControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get contato_index_url
+    get cobranca_index_url
     assert_response :success
   end
 end

@@ -9,8 +9,10 @@ class Funcionario < ApplicationRecord
   accepts_nested_attributes_for :perfil, :allow_destroy => true
   
   enum cargo: { 
-    :Administrador=> 0, 
-    :Vendedor => 1 
+    :"Super-Administrador"=> 0, 
+    :Administrador => 1,
+    :Vendedor => 2,
+    :"Agente de Cobranca" => 3
   }
 
   validates :cargo, presence:true
@@ -28,5 +30,8 @@ class Funcionario < ApplicationRecord
   end
 
   validates :perfil, presence: true
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
+  validates :email, presence: true
 
 end

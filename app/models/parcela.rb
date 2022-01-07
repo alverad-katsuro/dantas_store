@@ -1,5 +1,6 @@
 class Parcela < ApplicationRecord
   belongs_to :venda
+  after_update :pago?
 
   rails_admin do
     visible true
@@ -7,12 +8,24 @@ class Parcela < ApplicationRecord
       configure :venda do
         hide
       end
+      configure :parcela_atual do
+        hide
+      end
+      configure :data_vencimento do
+        hide
+      end
+      configure :data_pagamento do
+        hide
+      end
     end
   end
 
-  validates :parcelas, presence: true
 
-  def configura_campos
-    
+  def pago?
+    if self.data_pagamento.nil? && self.pago == true
+      self.data_pagamento = DateTime.now
+      self.save!
+    end
   end
+
 end

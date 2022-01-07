@@ -14,8 +14,8 @@ class Funcionario::RegistrationsController < Devise::RegistrationsController
   end
 
   # POST /resource/sign_up
-  def create
-  end
+  #def create
+  #end
 
   # GET /resource/edit
   # def edit
@@ -59,7 +59,13 @@ class Funcionario::RegistrationsController < Devise::RegistrationsController
   def permitted_attributes
     [
       :funcionario,
+      :perfil,
+      :banco,
+      :agencia,
+      :conta_corrente,
       :avatar,
+      :perfil_attributes,
+      perfil_attributes: %i[nome sobrenome rua numero telefone bairro sexo avatar cidade estado complemento nascimento id]
     ]
   end
 

@@ -9,8 +9,8 @@ class CreatePerfils < ActiveRecord::Migration[7.0]
       t.string :rua
       t.string :cpf
       t.integer :numero
-      t.string :cidade
       t.string :bairro
+      t.string :cidade
       t.string :estado
       t.text :complemento
       t.date :nascimento

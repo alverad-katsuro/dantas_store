@@ -12,4 +12,8 @@ class Categoria < ApplicationRecord
       "#{self.categoria.capitalize}"
     end
   end
+
+  validates :categoria, presence: true
+  validates :descricao, presence: true
+  validates :foto_apresentacao, presence: true
 end

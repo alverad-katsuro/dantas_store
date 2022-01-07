@@ -8,12 +8,12 @@ class Perfil < ApplicationRecord
   validates :telefone, presence:true, length: { minimum: 11, maximim: 15 }
   validates :sexo, presence:false
   validates :rua, presence:true
-  validates :cpf, presence:true
   validates :numero, presence:true
   validates :cidade, presence:true
   validates :bairro, presence:true
   validates :estado, presence:true
   validates :complemento, presence:true, length: { maximum: 300 }
+  
   enum sexo: { 
     :"Masculino"=> 0, 
     :"Feminino" => 1,
@@ -31,6 +31,16 @@ class Perfil < ApplicationRecord
     show do
       configure :perfil do
         label "Conta Associada"
+      end
+    end
+    edit do
+      configure :estado do
+        default_value "PA"
+      end
+    end
+    edit do
+      configure :cidade do
+        default_value "Barcarena"
       end
     end
   end

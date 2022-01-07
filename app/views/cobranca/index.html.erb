@@ -1,0 +1,44 @@
+<!-- component -->
+<div class="flex flex-col h-screen">
+    <div class="flex-grow overflow-auto">
+      <table class="relative w-full border">
+        <thead>
+          <tr>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Nome</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Endereco</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Telefone</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Parcela</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Vencimento</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Valor R$</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Pago?</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y bg-gray-100">
+        <% @cobrancas.each do |cobranca| %>
+        <%= turbo_frame_tag cobranca do %>
+
+        <% venda = cobranca.venda %>
+        <% perfil = venda.perfil %>
+          <tr>
+            <td class="px-6 py-4 text-center"><%= link_to perfil.nome, "/admin/parcela/#{cobranca.id}/edit" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{perfil.rua} #{perfil.bairro} #{perfil.cidade} #{perfil.estado}" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{perfil.telefone}" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{cobranca.parcela_atual}" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{cobranca.data_vencimento}" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{cobranca.valor}" %></td>
+            <td class="px-6 py-4 text-center">
+            <%= form_with model: cobranca, url: "/cobranca/#{cobranca.id}", method: :patch, local: true do |f| %>
+            <%= f.label :pago, class:"sr-only" %>
+            <%= f.text_field :pago, value: true, class:"sr-only" %>
+            <%= f.submit "Sim", :class=>"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            <% end %>
+            
+            
+            </td>
+          </tr>
+        <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
