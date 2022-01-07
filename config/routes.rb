@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "user", to: "users#index" 
   get "funcionario", to: "funcionarios#index" 
   get "departamento", to: "departamento#index" 
-  get "produtos", to: "produtos#index"
+  #get "produtos", to: "produtos#index"
   get "produto", to: "produtos#show"
   get "categoria/:categoria", to: "categoria#show"
   get "vendas", to: "vendas#new"

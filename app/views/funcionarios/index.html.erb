@@ -161,6 +161,7 @@
                                 <span class="tracking-wide">Vendas</span>
                             </div>
                             <ul class="list-inside space-y-2">
+                            <% #Venda.find_by_sql("limit 5 select *") %>
                                 <li>
                                     <div class="text-teal-600">Owner at Her Company Inc.</div>
                                     <div class="text-gray-500 text-xs">March 2020 - Now</div>

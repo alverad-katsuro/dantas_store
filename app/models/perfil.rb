@@ -1,5 +1,5 @@
 class Perfil < ApplicationRecord
-  belongs_to :perfil, polymorphic: true
+  belongs_to :perfil, polymorphic: true, optional: true
   
   has_one_attached :avatar
 

@@ -5,7 +5,8 @@ class Funcionario < ApplicationRecord
          :recoverable, :rememberable, :validatable
   #
   has_one_attached :avatar
-  has_one :perfil, as: :perfil, dependent: :destroy, inverse_of: :perfil
+  has_one :perfil, as: :perfil, dependent: :destroy
+  accepts_nested_attributes_for :perfil, :allow_destroy => true
   
   enum cargo: { 
     :Administrador=> 0, 
@@ -21,7 +22,11 @@ class Funcionario < ApplicationRecord
   end
 
   def to_s
-    self.perfil.nome + " " + self.perfil.sobrenome
+    if perfil
+      self.perfil.nome + " " + self.perfil.sobrenome
+    end
   end
+
+  validates :perfil, presence: true
 
 end

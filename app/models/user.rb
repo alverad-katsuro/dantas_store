@@ -7,16 +7,17 @@ class User < ApplicationRecord
   ##
 
   has_one :perfil, as: :perfil, dependent: :destroy
-  accepts_nested_attributes_for :perfil
+  accepts_nested_attributes_for :perfil, :allow_destroy => true
 
   rails_admin do
-    visible false
+    visible true
     edit do
       configure :perfil do
-        hide
+        show
       end
     end
   end
 
+  validates :perfil, presence: true
 
 end

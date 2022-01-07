@@ -41,7 +41,7 @@
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= render "shared/funcionarios_menu/botoes/inicio" %>
-            <%= render "shared/funcionarios_menu/botoes/produtos" %>
+            <%#= render "shared/funcionarios_menu/botoes/produtos" %>
             <%= render "shared/funcionarios_menu/botoes/vendas" %>
             <% if current_funcionario.cargo.eql?("Administrador") %>
               <%= link_to("Dashboard", "/admin", :class=>"text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium") %>
@@ -63,7 +63,7 @@
     <div class="px-2 pt-2 pb-4 space-y-1 hidden" id="nav-links">
       <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
       <%= render "shared/funcionarios_menu/botoes_mobile/inicio" %>
-      <%= render "shared/funcionarios_menu/botoes_mobile/produtos" %>
+      <%#= render "shared/funcionarios_menu/botoes_mobile/produtos" %>
       <%= render "shared/funcionarios_menu/botoes_mobile/vendas" %>
       <% if current_funcionario.cargo.eql?("Administrador") %>
         <%= link_to("Dashboard", "/admin", :class=>"text-gray-300 hover:bg-gray-700 block hover:text-white px-3 py-2 rounded-md text-base font-medium") %>

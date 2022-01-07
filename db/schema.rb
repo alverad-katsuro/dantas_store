@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_193921) do
   end
 
   create_table "perfils", charset: "utf8mb4", force: :cascade do |t|
-    t.string "perfil_type", null: false
-    t.bigint "perfil_id", null: false
+    t.string "perfil_type"
+    t.bigint "perfil_id"
     t.string "nome"
     t.string "sobrenome"
     t.string "telefone"
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_193921) do
     t.bigint "produto_id", null: false
     t.bigint "perfil_id", null: false
     t.date "data_pagamento"
-    t.integer "quantidade"
-    t.integer "desconto"
+    t.integer "quantidade", default: 1
+    t.integer "desconto", default: 0
     t.integer "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -4,6 +4,7 @@ class Produto < ApplicationRecord
   has_one_attached :foto_02
   has_one_attached :foto_03
   has_one_attached :foto_04
+  
   has_many :tag
   has_many :categoria, through: :tag
 
@@ -28,4 +29,9 @@ class Produto < ApplicationRecord
   def to_s
     "#{self.codigo_produto} - #{self.nome}"
   end
+
+  def next_image
+    
+  end
+
 end

@@ -8,12 +8,17 @@ class Ability
     #
     #   user ||= User.new # guest user (not logged in)
     if user.is_a?(Funcionario)
+      can :access, :rails_admin
       if user.cargo.eql?("Administrador")
         can :manage, :all
-        can :access, :rails_admin
         can :read, :dashboard
       else
-        can :read, :all
+        can :read, Produto
+        can :read, Perfil
+        can :read, Venda, ["funcionario_id = ?", user.id] do |venda|
+          venda
+        end
+        can :new, Venda
       end
       
     elsif user.is_a?(User)

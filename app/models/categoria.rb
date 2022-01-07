@@ -8,6 +8,8 @@ class Categoria < ApplicationRecord
   end
 
   def to_s
-    "#{self.categoria.capitalize}"
+    if categoria
+      "#{self.categoria.capitalize}"
+    end
   end
 end
