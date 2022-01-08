@@ -1,11 +1,11 @@
-<main class="my-8 mx-8">
+<div class="my-8 mx-8">
   <% @categoria.each do |submatriz| %>
-    <div class="md:flex mt-8 md:-mx-4">
+    <div class="md:flex md:mt-8 md:-mx-4">
     <% if submatriz.size.even? %>
 
       <% submatriz.each do |categoria| %>
           <% if categoria.foto_apresentacao.attached? %>
-            <div class="my-10 w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2" style="background-image: url(<%= rails_blob_url(categoria.foto_apresentacao) %>)">
+            <div class="w-full h-64 md:mx-4 rounded-md overflow-hidden bg-cover bg-center md:w-1/2 sm:mb-0 mb-5"  style="background-image: url(<%= rails_blob_url(categoria.foto_apresentacao) %>)">
                 <div class="bg-gray-900 bg-opacity-50 flex items-center h-full group relative">
                     <div class="px-10 max-w-xl">
                         <h2 class="text-2xl text-white font-semibold"><%= categoria.categoria.capitalize %></h2>
@@ -84,4 +84,4 @@
       </div>
     </div>
   <% end %>
-</main>
+</div>
