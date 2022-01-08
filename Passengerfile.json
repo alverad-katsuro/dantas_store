@@ -1,4 +1,4 @@
 {
   "port": "9500",
-  "environment": "development"
+  "environment": "production"
 }

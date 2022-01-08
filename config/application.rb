@@ -12,7 +12,6 @@ module DantasStore
     config.load_defaults 7.0
     config.i18n.default_locale = :'pt-BR'
     I18n.available_locales = [:'en', :'pt-BR']
-    config.web_console.permissions = '10.0.0.182'
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
