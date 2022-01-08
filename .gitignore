@@ -34,5 +34,4 @@
 !/app/assets/builds/.keep
 Passengerfile.json
 config/database.yml
-db/seeds.rb
-
+db/seed.rb
