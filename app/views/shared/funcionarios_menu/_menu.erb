@@ -12,7 +12,7 @@
     <div>
       <button type="button" class="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu-button" onclick="hide_show(menu_user);">
         <span class="sr-only">Open user menu</span>
-        <% if current_funcionario.avatar.attached? %>
+        <% if current_funcionario.perfil.avatar.attached? %>
         <div class="image overflow-hidden">
           <%= image_tag(current_funcionario.avatar, :class=>"h-12 w-12 rounded-full")%>
         </div>

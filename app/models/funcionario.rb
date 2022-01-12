@@ -4,7 +4,6 @@ class Funcionario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   #
-  has_one_attached :avatar
   has_one :perfil, as: :perfil, dependent: :destroy
   accepts_nested_attributes_for :perfil, :allow_destroy => true
   

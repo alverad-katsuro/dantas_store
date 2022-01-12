@@ -1,5 +1,5 @@
 class Venda < ApplicationRecord
-  before_validation :estoque?, :valida_data, :valida_quantidade_de_parcelas
+  before_validation :estoque?, :valida_quantidade_de_parcelas#, :valida_data
   before_create :define_total
   after_create :reduz_stock?, :cria_parcelas!
   belongs_to :funcionario

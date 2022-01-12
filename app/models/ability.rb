@@ -9,28 +9,23 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
     if user.is_a?(Funcionario)
       can :access, :rails_admin
+      can :read, :dashboard
       if Funcionario.cargos[user.cargo] == Funcionario.cargos[:"Super-Administrador"]
         can :manage, :all
         can :read, :dashboard
-      elsif Funcionario.cargos[user.cargo] == Funcionario.cargos[:"Administrador"]
-        can :manager, Produto
-        can :manager, Funcionario
-        can :manager, Parcela
-        can :manager, Categoria
-        can :manager, Perfil
+      elsif Funcionario.cargos[user.cargo] == Funcionario.cargos[:Administrador]
+        can :all, Produto
+        can :manage, [Funcionario, Parcela, Categoria, Perfil, Venda, Produto]
       elsif Funcionario.cargos[user.cargo] == Funcionario.cargos[:"Vendedor"]
-        can :read, :dashboard
-        can :read, Produto
         can :read, Funcionario, ["id = ?", user.id] do |funcionario|
           funcionario
         end
-        can :read, Perfil
+        can :read, [Produto, Perfil]
         can :read, Venda, ["funcionario_id = ?", user.id] do |venda|
           venda
         end
         can :new, Venda
-        can :create, Venda
-        can :create, ItemVendido
+        can :create, [Venda, ItemVendido]
       elsif Funcionario.cargos[user.cargo] == Funcionario.cargos[:"Agente de Cobranca"]
         can :update, Parcela
         can :read, Parcela
