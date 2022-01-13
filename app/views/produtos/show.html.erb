@@ -25,7 +25,7 @@
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
         <div class="grid md:grid-cols-2 text-sm">
            <h1 class="text-gray-900 text-2xl title-font font-medium mb-1  grid-cols-2"><%= @produto.nome %></h1>
-          <span class="title-font font-sm text-2xl text-gray-900  grid-cols-2">R$ <%= @produto.preco_de_venda %></span>
+          <span class="title-font font-sm text-2xl text-gray-900  grid-cols-2">R$ <%= "#{'%.2f' % @produto.preco_de_venda}" %></span>
           <% if @produto.quantidade > 0 %>
             <p class="mt-1 text-sm text-gray-500">Disponivel</p>
           <% else %>

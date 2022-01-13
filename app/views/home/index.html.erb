@@ -70,12 +70,12 @@
                   <% end %>
                   </h3>
                   <% if produto.quantidade > 0%>
-                  <p class="mt-1 text-sm text-gray-500">Disponivel</p>
+                  <p class="mt-1 text-sm text-gray-500">Disponível</p>
                   <% else %>
                   <p class="mt-1 text-sm text-gray-500">Indisponivel</p>
                   <% end %>
                 </div>
-                <p class="text-sm font-medium text-gray-900">R$ <%= produto.preco_de_venda %></p>
+                <p class="text-sm font-medium text-gray-900">R$ <%= "#{'%.2f' % produto.preco_de_venda}" %></p>
               </div>
             </div>
           <% end %>
