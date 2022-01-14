@@ -51,10 +51,10 @@ class Venda < ApplicationRecord
   end
 
   enum desconto: { 
-  :"Sem Desconto"=> 0, 
-  :"10%"=> 1, 
-  :"20%" => 2,
-  :"30%" => 3 
+    :"Sem Desconto"=> 0, 
+    :"10%"=> 1, 
+    :"20%" => 2,
+    :"30%" => 3
   }
 
   enum quantidade_de_parcelas: {
@@ -92,12 +92,12 @@ class Venda < ApplicationRecord
 
   def cria_parcelas!
     unless self.quantidade_de_parcelas.eql? "Avista"
-      parcelas = []
+      data_do_pagamento = self.data_pagamento
       valor = self.total / (Venda.quantidade_de_parcelas[self.quantidade_de_parcelas])
       Venda.quantidade_de_parcelas[self.quantidade_de_parcelas].times do |parcela|
-        parcelas.append(Parcela.create(venda_id: self.id, parcela_atual: (parcela + 1), data_vencimento: self.data_pagamento.change(month: parcela + 1), pago: false, valor: valor))
+        self.parcela.append(Parcela.create(venda_id: self.id, parcela_atual: (parcela + 1), data_vencimento: data_do_pagamento, pago: false, valor_da_parcela: valor))
+        data_do_pagamento = data_do_pagamento.next_month
       end
-      self.parcela = parcelas
       self.save!
     end
   end

@@ -80,7 +80,8 @@ ActiveRecord::Schema.define(version: 2022_01_07_190825) do
     t.bigint "venda_id", null: false
     t.integer "parcela_atual", default: 1
     t.boolean "pago", default: false
-    t.float "valor"
+    t.float "valor_pago"
+    t.float "valor_da_parcela"
     t.date "data_pagamento"
     t.date "data_vencimento"
     t.datetime "created_at", precision: 6, null: false

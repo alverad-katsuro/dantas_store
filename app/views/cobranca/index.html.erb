@@ -9,8 +9,9 @@
             <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Telefone</th>
             <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Parcela</th>
             <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Vencimento</th>
-            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Valor R$</th>
-            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Pago?</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Valor da parcela R$</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Valor pago R$</th>
+            <th class="sticky top-0 px-6 py-3 text-black-900 bg-gray-400">Confirma?</th>
           </tr>
         </thead>
         <tbody class="divide-y bg-gray-100">
@@ -25,16 +26,20 @@
             <td class="px-6 py-4 text-center"><%= "#{perfil.telefone}" %></td>
             <td class="px-6 py-4 text-center"><%= "#{cobranca.parcela_atual}" %></td>
             <td class="px-6 py-4 text-center"><%= "#{cobranca.data_vencimento}" %></td>
-            <td class="px-6 py-4 text-center"><%= "#{cobranca.valor}" %></td>
+            <td class="px-6 py-4 text-center"><%= "#{'%.2f' % cobranca.valor_da_parcela}" %></td>
+            <%= form_with model: cobranca, url: "/cobranca/#{cobranca.id}", method: :patch, local: true, :class=>"sr-only" do |f| %>
+            <td class="text-center">
+            <%= f.label :valor_pago, class:"sr-only" %>
+            <%= f.number_field :valor_pago, value: '%.2f' % cobranca.valor_da_parcela.to_f, :class=>"w-24 rounded-none bg-gray-100 border-none placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 text-center" %>
+            </td>
             <td class="px-6 py-4 text-center">
-            <%= form_with model: cobranca, url: "/cobranca/#{cobranca.id}", method: :patch, local: true do |f| %>
             <%= f.label :pago, class:"sr-only" %>
             <%= f.text_field :pago, value: true, class:"sr-only" %>
             <%= f.submit "Sim", :class=>"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+            </td>
             <% end %>
             
             
-            </td>
           </tr>
         <% end %>
         <% end %>

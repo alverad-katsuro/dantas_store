@@ -16,7 +16,7 @@ Rails.application.configure do
 
   # Enable server timing
   config.server_timing = true
-  config.web_console.permissions = '10.0.0.182'
+  config.web_console.permissions = '10.0.0.147'
 
 
   # Enable/disable caching. By default caching is disabled.

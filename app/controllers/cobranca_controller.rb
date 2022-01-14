@@ -5,7 +5,7 @@ class CobrancaController < ApplicationController
 
   def update
     @cobranca = Parcela.find(params[:id])
-    if @cobranca.update(params.require(:parcela).permit(:pago))
+    if @cobranca.update(params.require(:parcela).permit(:pago, :valor_pago))
       redirect_to cobrancas_path
     end
   end

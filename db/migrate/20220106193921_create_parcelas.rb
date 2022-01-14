@@ -4,7 +4,8 @@ class CreateParcelas < ActiveRecord::Migration[7.0]
       t.belongs_to :venda, null: false, foreign_key: true
       t.integer :parcela_atual, default: 1
       t.boolean :pago, default: false
-      t.float :valor
+      t.float :valor_pago
+      t.float :valor_da_parcela
       t.date :data_pagamento
       t.date :data_vencimento
 

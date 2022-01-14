@@ -33,3 +33,4 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 Passengerfile.json
+config/initializers/mysql.rb
