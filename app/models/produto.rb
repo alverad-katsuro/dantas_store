@@ -23,6 +23,88 @@ class Produto < ApplicationRecord
     end
     edit do
       exclude_fields  :tag
+      configure :foto_00 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_01 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_02 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_03 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_04 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+    end
+    show do
+      configure :foto_00 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_01 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_02 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_03 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
+      configure :foto_04 do
+        pretty_value do
+          if value
+            path = Rails.application.routes.url_helpers.rails_blob_path(value, only_path: true)
+            bindings[:view].content_tag(:img, "", style: "width: 400px", src: path)
+          end
+        end
+      end
     end
   end
 
